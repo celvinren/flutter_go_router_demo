@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../pages/about_screen.dart';
+import '../../pages/auth/auth_screen.dart';
+import '../../pages/auth/unauth_screen.dart';
 import '../../pages/book_screen.dart';
 import '../../pages/home_screen.dart';
 import '../../pages/lab_screen.dart';
@@ -20,6 +22,8 @@ part 'routes.g.dart';
     TypedGoRoute<LabRoute>(path: 'lab'),
     TypedGoRoute<ShowcaseRoute>(path: 'showcase'),
     TypedGoRoute<UIKitsRoute>(path: 'uikits'),
+    TypedGoRoute<AuthRoute>(path: 'auth'),
+    TypedGoRoute<UnauthRoute>(path: 'unauth'),
   ],
 )
 @immutable
@@ -98,5 +102,31 @@ class UIKitsRoute extends GoRouteData {
     GoRouterState state,
   ) {
     return const UIKitsScreen();
+  }
+}
+
+@immutable
+class AuthRoute extends GoRouteData {
+  const AuthRoute();
+
+  @override
+  Widget build(
+    BuildContext context,
+    GoRouterState state,
+  ) {
+    return const AuthScreen();
+  }
+}
+
+@immutable
+class UnauthRoute extends GoRouteData {
+  const UnauthRoute();
+
+  @override
+  Widget build(
+    BuildContext context,
+    GoRouterState state,
+  ) {
+    return const UnauthScreen();
   }
 }

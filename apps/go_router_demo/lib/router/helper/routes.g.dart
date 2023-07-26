@@ -34,6 +34,14 @@ RouteBase get $homeRoute => GoRouteData.$route(
           path: 'uikits',
           factory: $UIKitsRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'auth',
+          factory: $AuthRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'unauth',
+          factory: $UnauthRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -127,6 +135,40 @@ extension $UIKitsRouteExtension on UIKitsRoute {
 
   String get location => GoRouteData.$location(
         '/uikits',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AuthRouteExtension on AuthRoute {
+  static AuthRoute _fromState(GoRouterState state) => const AuthRoute();
+
+  String get location => GoRouteData.$location(
+        '/auth',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $UnauthRouteExtension on UnauthRoute {
+  static UnauthRoute _fromState(GoRouterState state) => const UnauthRoute();
+
+  String get location => GoRouteData.$location(
+        '/unauth',
       );
 
   void go(BuildContext context) => context.go(location);

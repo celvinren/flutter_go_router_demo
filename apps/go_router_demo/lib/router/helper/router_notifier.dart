@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../auth/auth_service.dart';
+
 part 'router_notifier.g.dart';
 
 /// This notifier is meant to implement the [Listenable] our [GoRouter] needs.
@@ -24,11 +26,18 @@ class RouterNotifier extends _$RouterNotifier implements Listenable {
 
   // if we need to watch some providers
   @override
-  Future<void> build() async {}
+  Future<void> build() async {
+    ref.watch(authServiceProvider);
+    routerListener?.call();
+  }
 
   // redirects if we need them
   String? redirect(BuildContext context, GoRouterState state) {
-    return null;
+    final authStatus = ref.watch(authServiceProvider);
+    if (authStatus == AuthStatus.unauthenticated) {
+      return '/unauth';
+    }
+    return state.fullPath == '/unauth' ? '/' : null;
   }
 
   @override

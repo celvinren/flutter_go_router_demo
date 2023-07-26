@@ -6,7 +6,7 @@ part of 'router_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerNotifierHash() => r'0be6e497394fbfacddc7e48597e699e465e0eed6';
+String _$routerNotifierHash() => r'691afe2d8d876b8d16354554183324fc60597e47';
 
 /// This notifier is meant to implement the [Listenable] our [GoRouter] needs.
 ///
